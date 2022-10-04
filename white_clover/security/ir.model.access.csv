@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_white_clover_player,white_clover.player,model_white_clover_player,base.group_user,1,1,1,1
+access_white_clover_villa,white_clover.villa,model_white_clover_villa,base.group_user,1,1,1,1
+access_white_clover_grimorio,white_clover.grimorio,model_white_clover_grimorio,base.group_user,1,1,1,1
+
