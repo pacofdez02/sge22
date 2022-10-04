@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="white_clover.list">
+      <field name="name">white_clover list</field>
+      <field name="model">white_clover.white_clover</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="white_clover.action_player_window">
+      <field name="name">white_clover player</field>
+      <field name="res_model">white_clover.player</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="white_clover.action_server">
+      <field name="name">white_clover server</field>
+      <field name="model_id" ref="model_white_clover_white_clover"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="white_clover" id="white_clover.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Game" id="white_clover.menu_game" parent="white_clover.menu_root"/>
+
+
+    <!-- actions -->
+
+    <menuitem name="Player" id="white_clover.menu_player_list" parent="white_clover.menu_game"
+              action="white_clover.action_player_window"/>
+   
+              
+
+  </data>
+</odoo>
