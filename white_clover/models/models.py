@@ -12,7 +12,10 @@ class player(models.Model):
     name = fields.Char(String = "Nombre", required = True)
     password = fields.Char()
 
-    grimorios = fields.One2many('white_clover-grimorios', 'player')
+    grimorios = fields.One2many('white_clover.grimorio', 'player')
+
+
+
 
 class villa(models.Model):
     _name = 'white_clover.villa'
@@ -22,12 +25,12 @@ class villa(models.Model):
     image = fields.Image(max_width = 200, max_height = 200)
     size = fields.Float()
 
-    grimorios = fields.One2many('white_clover-grimorios', 'villa')
+    grimorios = fields.One2many('white_clover.grimorio', 'villa')
 
 
 class grimorio(models.Model):
     _name = 'white_clover.grimorio'
     _description = 'Grimorios'
 
-    villas = fields.Many2One('white_clover.villa')
-    player = fields.Many2One('white_clover.player')
+    villa = fields.Many2one('white_clover.villa')
+    player = fields.Many2one('white_clover.player')
