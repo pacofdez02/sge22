@@ -27,8 +27,24 @@
              <group>
              <field name="name"/>
              <field name="password" password = "True"/>
-
              </group>
+             <notebook>
+                <page string ="Buildings">
+                  <group>
+                    <field name="buildings"/>
+                  </group>
+                </page>
+
+                <page string ="Grimoires">
+                  <group>
+                    <field name="grimoires"/>
+                  </group>
+                </page>
+
+               
+
+
+             </notebook>
           </group>
 
       </sheet>

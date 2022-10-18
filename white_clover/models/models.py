@@ -68,5 +68,17 @@ class grimoire(models.Model):
     _name = 'white_clover.grimoire'
     _description = 'Grimoire'
 
+
+    level = fields.Float(compute = "get_lvl")
+    xp = fields.Float()
+
+
     player = fields.Many2one('white_clover.player')
-    npc_village = fields.Many2one('white_clover.npc_village')
+    npc_village = fields.Many2one('white_clover.npc_village') 
+
+    @api.depends('xp')
+    def get_lvl(self):
+        for actual in self:
+
+
+
