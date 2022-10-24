@@ -38,27 +38,30 @@ class building(models.Model):
     _name = 'white_clover.building'
     _description = 'Building'
 
-    name = fields.Char(required = True)
+    name = fields.Selection([('1','hola'),('2','gold_production'),('3','wizard_production')])
     image = fields.Image(max_width = 200, max_height = 200)
-    size = fields.Float()
 
     player_village = fields.Many2one('white_clover.player')
     npc_village = fields.Many2one('white_clover.npc_village')
 
     #type = fields.Selection([('1','magic_institute'),('2','creation_institute'),('3','wizard_institute')])
 
-    type = fields.Many2one('white_clover.building_type')
-    magic_institute = fields.Float(related = 'type.magic_institute')
-    creation_institute = fields.Float(related = 'type.creation_institute')
-    wizard_institute = fields.Float(related = 'type.wizard_institute')
+    building_type = fields.Many2one('white_clover.building_type')
+
+    mana_production = fields.Float(related = 'building_type.mana_production')
+    gold_production = fields.Float(related = 'building_type.gold_production')
+    wizard_production = fields.Float(related = 'building_type.wizard_production')
 
 
 class building_type(models.Model):
     _name = 'white_clover.building_type'
 
-    magic_institute = fields.Float()
-    creation_institute = fields.Float()
-    wizard_institute = fields.Float()
+    name = fields.Char()
+    building_type = fields.One2many('white_clover.building', 'building_type')
+
+    mana_production = fields.Float()
+    gold_production = fields.Float()
+    wizard_production = fields.Float()
 
 
 
@@ -69,16 +72,13 @@ class grimoire(models.Model):
     _description = 'Grimoire'
 
 
-    level = fields.Float(compute = "get_lvl")
+    level = fields.Integer(compute = "get_lvl")
     xp = fields.Float()
 
 
     player = fields.Many2one('white_clover.player')
     npc_village = fields.Many2one('white_clover.npc_village') 
 
-    @api.depends('xp')
-    def get_lvl(self):
-        for actual in self:
-
-
-
+    #@api.depends('xp')
+    #def get_lvl(self):
+     #   for actual in self:

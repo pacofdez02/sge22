@@ -34,19 +34,36 @@
                     <field name="buildings"/>
                   </group>
                 </page>
-
                 <page string ="Grimoires">
-                  <group>
+                  <group>   
                     <field name="grimoires"/>
                   </group>
                 </page>
-
-               
-
-
              </notebook>
           </group>
+      </sheet>
+  </form>
+  </field>
+  </record>
 
+  <record model="ir.ui.view" id="white_clover.building_tree">
+  <field name="name">white_clover building</field>
+  <field name="model">white_clover.building</field>
+  <field name="arch" type="xml">
+  <form>
+      <sheet>
+          <group>
+          <group>
+              <field name="building_type"/>
+              <field name ="image"  widget ="image"/>
+            </group>
+
+            <group>
+                 <field name="mana_production"/>
+                 <field name="gold_production"/>
+                 <field name="wizard_production"/>
+            </group>
+          </group>
       </sheet>
   </form>
   </field>
@@ -72,6 +89,19 @@
       <field name="res_model">white_clover.grimoire</field>
       <field name="view_mode">tree,form</field>
     </record>
+
+    <record model="ir.actions.act_window" id="white_clover.action_building_window">
+      <field name="name">white_clover building</field>
+      <field name="res_model">white_clover.building</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="white_clover.action_building_type_window">
+      <field name="name">white_clover building_type</field>
+      <field name="res_model">white_clover.building_type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
 
 
 
@@ -103,15 +133,20 @@
 
     <!-- actions -->
 
-    <menuitem name="Player" id="white_clover.menu_player_list" parent="white_clover.menu_game"
+    <menuitem name="player" id="white_clover.menu_player_list" parent="white_clover.menu_game"
               action="white_clover.action_player_window"/>
 
-              <menuitem name="villages" id="white_clover.menu_npc_village_list" parent="white_clover.menu_game"
+              <menuitem name="npc villages" id="white_clover.menu_npc_village_list" parent="white_clover.menu_game"
               action="white_clover.action_npc_village_window"/>
 
               <menuitem name="grimoires" id="white_clover.menu_grimoire_list" parent="white_clover.menu_game"
               action="white_clover.action_grimoire_window"/>
    
+               <menuitem name="buildings" id="white_clover.menu_building_list" parent="white_clover.menu_game"
+              action="white_clover.action_building_window"/>
+
+               <menuitem name="building types" id="white_clover.menu_building_type_list" parent="white_clover.menu_game"
+              action="white_clover.action_building_type_window"/>
               
 
   </data>
