@@ -4,6 +4,10 @@
           <record id="white_clover.mana_production" model="white_clover.building_type">
             <field name="name">Mana production</field>
             <field name="mana_production">1</field>
+
+            <!--<field name="image"/>-->
+            <!--<field name="mana" ref="white_clover.building"/>-->
+
           </record>
 
           <record id="white_clover.gold_production" model="white_clover.building_type">

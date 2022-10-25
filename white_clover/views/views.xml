@@ -46,7 +46,18 @@
   </field>
   </record>
 
-  <record model="ir.ui.view" id="white_clover.building_tree">
+ <record model="ir.ui.view" id="white_clover.building_tree">
+  <field name="name">white_clover building</field>
+  <field name="model">white_clover.building</field>
+  <field name="arch" type="xml">
+  <tree>
+
+  </tree>
+  </field>
+  </record>
+
+
+  <record model="ir.ui.view" id="white_clover.building_form">
   <field name="name">white_clover building</field>
   <field name="model">white_clover.building</field>
   <field name="arch" type="xml">

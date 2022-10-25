@@ -39,10 +39,10 @@ class building(models.Model):
     _description = 'Building'
 
     name = fields.Selection([('1','hola'),('2','gold_production'),('3','wizard_production')])
-    image = fields.Image(max_width = 200, max_height = 200)
+    image = fields.Image(related = 'building_type.image')
 
-    player_village = fields.Many2one('white_clover.player')
-    npc_village = fields.Many2one('white_clover.npc_village')
+    player_village = fields.Many2one('white_clover.player',ondelete="cascade")
+    npc_village = fields.Many2one('white_clover.npc_village', ondelete="cascade")
 
     #type = fields.Selection([('1','magic_institute'),('2','creation_institute'),('3','wizard_institute')])
 
@@ -58,6 +58,7 @@ class building_type(models.Model):
 
     name = fields.Char()
     building_type = fields.One2many('white_clover.building', 'building_type')
+    image = fields.Image(max_width = 200, max_height = 200)
 
     mana_production = fields.Float()
     gold_production = fields.Float()
