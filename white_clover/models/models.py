@@ -83,3 +83,4 @@ class grimoire(models.Model):
     #@api.depends('xp')
     #def get_lvl(self):
      #   for actual in self:
+            

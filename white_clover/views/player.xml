@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+    <record model="ir.ui.view" id="white_clover.player_form">
+  <field name="name">white_clover player</field>
+  <field name="model">white_clover.player</field>
+  <field name="arch" type="xml">
+  <form>
+      <sheet>
+          <group>
+             <group>
+             <field name="image" widget ="image"/>
+             </group>
+             <group>
+             <field name="name"/>
+             <field name="password" password = "True"/>
+             </group>
+             <notebook>
+                <page string ="Buildings">
+                  <group>
+                    <field name="buildings"/>
+                  </group>
+                </page>
+                <page string ="Grimoires">
+                  <group>   
+                    <field name="grimoires"/>
+                  </group>
+                </page>
+             </notebook>
+          </group>
+      </sheet>
+  </form>
+  </field>
+  </record>
+    </data>
+</odoo>
