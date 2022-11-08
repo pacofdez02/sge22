@@ -38,7 +38,8 @@ class building(models.Model):
     _name = 'white_clover.building'
     _description = 'Building'
 
-    name = fields.Selection([('1','hola'),('2','gold_production'),('3','wizard_production')])
+    #name = fields.Selection([('1','mana_production'),('2','gold_production'),('3','wizard_production')])
+    name = fields.Char(related = 'building_type.name')
     image = fields.Image(related = 'building_type.image')
 
     player_village = fields.Many2one('white_clover.player',ondelete="cascade")
