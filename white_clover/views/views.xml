@@ -14,73 +14,9 @@
       </field>
     </record>
 -->
+ 
 
-
-  <record model="ir.ui.view" id="white_clover.player_tree">
-  <field name="name">white_clover player</field>
-  <field name="model">white_clover.player</field>
-  <field name="arch" type="xml">
-  <tree>
-      <sheet>
-          <group>
-             <group>
-             <field name="image" widget ="image"/>
-             </group>
-             <group>
-             <field name="name"/>
-             <field name="password" password = "True"/>
-             </group>
-             <notebook>
-                <page string ="Buildings">
-                  <group>
-                    <field name="buildings"/>
-                  </group>
-                </page>
-                <page string ="Grimoires">
-                  <group>   
-                    <field name="grimoires"/>
-                  </group>
-                </page>
-             </notebook>
-          </group>
-      </sheet>
-  </tree>
-  </field>
-  </record>
-
- <record model="ir.ui.view" id="white_clover.building_tree">
-  <field name="name">white_clover building</field>
-  <field name="model">white_clover.building</field>
-  <field name="arch" type="xml">
-  <tree>
-
-  </tree>
-  </field>
-  </record>
-
-
-  <record model="ir.ui.view" id="white_clover.building_form">
-  <field name="name">white_clover building</field>
-  <field name="model">white_clover.building</field>
-  <field name="arch" type="xml">
-  <form>
-      <sheet>
-          <group>
-          <group>
-              <field name="building_type"/>
-              <field name ="image"  widget ="image"/>
-            </group>
-
-            <group>
-                 <field name="mana_production"/>
-                 <field name="gold_production"/>
-                 <field name="wizard_production"/>
-            </group>
-          </group>
-      </sheet>
-  </form>
-  </field>
-  </record>
+ 
 
 
     <!-- actions opening views on models -->

@@ -9,7 +9,7 @@ class player(models.Model):
     _description = 'Player'
 
     image = fields.Image(max_width = 200, max_height = 200)
-    name = fields.Char(string = "Nombre", required = True)
+    name = fields.Char(String = "Nombre", required = True)
     password = fields.Char()
 
     name_village = fields.Char(required = True)
@@ -38,7 +38,8 @@ class building(models.Model):
     _name = 'white_clover.building'
     _description = 'Building'
 
-    name = fields.Selection([('1','mana_production'),('2','gold_production'),('3','wizard_production')])
+    #name = fields.Selection([('1','mana_production'),('2','gold_production'),('3','wizard_production')])
+    name = fields.Char(related = 'building_type.name')
     image = fields.Image(related = 'building_type.image')
 
     player_village = fields.Many2one('white_clover.player',ondelete="cascade")
@@ -83,3 +84,4 @@ class grimoire(models.Model):
     #@api.depends('xp')
     #def get_lvl(self):
      #   for actual in self:
+            
