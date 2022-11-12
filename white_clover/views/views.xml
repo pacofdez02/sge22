@@ -14,11 +14,13 @@
       </field>
     </record>
 -->
+
+
   <record model="ir.ui.view" id="white_clover.player_tree">
   <field name="name">white_clover player</field>
   <field name="model">white_clover.player</field>
   <field name="arch" type="xml">
-  <form>
+  <tree>
       <sheet>
           <group>
              <group>
@@ -42,7 +44,7 @@
              </notebook>
           </group>
       </sheet>
-  </form>
+  </tree>
   </field>
   </record>
 
