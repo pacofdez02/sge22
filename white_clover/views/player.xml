@@ -12,6 +12,7 @@
              </group>
              <group>
              <field name="name"/>
+             <field name="name"/>
              <field name="password" password = "True"/>
              </group>
              <notebook>

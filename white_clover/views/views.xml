@@ -39,6 +39,12 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <record model="ir.actions.act_window" id="white_clover.action_grimoire_type_window">
+      <field name="name">white_clover grimoire type</field>
+      <field name="res_model">white_clover.grimoire_type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
     <record model="ir.actions.act_window" id="white_clover.action_building_window">
       <field name="name">white_clover building</field>
       <field name="res_model">white_clover.building</field>
@@ -90,6 +96,9 @@
 
               <menuitem name="grimoires" id="white_clover.menu_grimoire_list" parent="white_clover.menu_game"
               action="white_clover.action_grimoire_window"/>
+
+              <menuitem name="grimoires types" id="white_clover.menu_grimoire_type_list" parent="white_clover.menu_game"
+              action="white_clover.action_grimoire_type_window"/>
    
                <menuitem name="buildings" id="white_clover.menu_building_list" parent="white_clover.menu_game"
               action="white_clover.action_building_window"/>

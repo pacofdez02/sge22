@@ -28,6 +28,8 @@
         'views/player.xml',
         'views/building.xml',
         'views/building_type.xml',
+        'views/grimoire.xml',
+        'views/grimoire_type.xml',
         'views/views.xml',
         'views/templates.xml',
         'demo/data.xml'

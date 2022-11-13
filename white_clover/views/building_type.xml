@@ -8,7 +8,7 @@
     <field name="name"/>
     <field name="mana_production"/>
     <field name="gold_production"/>
-    <field name="wizard_production"/>
+    <field name="evolver_production"/>
   </tree>
   </field>
   </record>
@@ -28,7 +28,7 @@
             <group string = "Productions">
                  <field name="mana_production"/>
                  <field name="gold_production"/>
-                 <field name="wizard_production"/>
+                 <field name="evolver_production"/>
             </group>
           </group>
       </sheet>
@@ -47,7 +47,7 @@
     <field name="name"/>
     <field name="mana_production"/>
     <field name="gold_production"/>
-    <field name="wizard_production"/>
+    <field name="evolver_production"/>
     <templates>
       <t t-name="kanban-box">
       <div t-attf-class="oe_kanban_card o_kanban_record_has_image_fill ">
@@ -74,9 +74,9 @@
                                             </li>
                                         </li>
 
-                                        <li attrs="{'invisible': [('wizard_production', '=', 0)]}">
-                                            <li>Wizard Production:
-                                            <field name="wizard_production"/>
+                                        <li attrs="{'invisible': [('evolver_production', '=', 0)]}">
+                                            <li>evolver Production:
+                                            <field name="evolver_production"/>
                                             </li>
                                         </li>
                                        
@@ -97,11 +97,11 @@
     <field name="name"/>
     <field name="mana_production"/>
     <field name="gold_production"/>
-    <field name="wizard_production"/>
+    <field name="evolver_production"/>
 
     <filter name="mana_productor" string="Mana productor" domain="[('mana_production','>',0)]"/>
     <filter name="gold_productor" string="Gold productor" domain="[('gold_production','>',0)]"/>
-    <filter name="wizard_productor" string="Wizard productor" domain="[('wizard_production','>',0)]"/>
+    <filter name="evolver_productor" string="evolver productor" domain="[('evolver_production','>',0)]"/>
 
   </search>
   </field>

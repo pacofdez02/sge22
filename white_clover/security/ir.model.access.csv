@@ -2,6 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_white_clover_player,white_clover.player,model_white_clover_player,base.group_user,1,1,1,1
 access_white_clover_npc_village,white_clover.npc_village,model_white_clover_npc_village,base.group_user,1,1,1,1
 access_white_clover_grimoire,white_clover.grimoire,model_white_clover_grimoire,base.group_user,1,1,1,1
+access_white_clover_grimoire_type,white_clover.grimoire_type,model_white_clover_grimoire_type,base.group_user,1,1,1,1
 access_white_clover_building,white_clover.building,model_white_clover_building,base.group_user,1,1,1,1
 access_white_clover_building_type,white_clover.building_type,model_white_clover_building_type,base.group_user,1,1,1,1
 
