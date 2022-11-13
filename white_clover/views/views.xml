@@ -48,7 +48,7 @@
     <record model="ir.actions.act_window" id="white_clover.action_building_type_window">
       <field name="name">white_clover building_type</field>
       <field name="res_model">white_clover.building_type</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
 
