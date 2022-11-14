@@ -9,14 +9,13 @@ class player(models.Model):
     _description = 'Player'
 
     image = fields.Image(max_width = 200, max_height = 200)
-    name = fields.Char(string = "Nombre", required = True)
+    name = fields.Char(string = "Name", required = True)
     password = fields.Char()
-    avatar = fields.Image(max_width=200, max_height=200)
     reputation = fields.Char()
 
-    name_village = fields.Char(required = True)
+    name_village = fields.Char(related = 'buildings.name')
     image_village = fields.Image(max_width = 200, max_height = 200)
-    size_village = fields.Float()
+
 
     buildings = fields.One2many('white_clover.building', 'player_village')
 
@@ -85,7 +84,7 @@ class grimoire(models.Model):
     _name = 'white_clover.grimoire'
     _description = 'Grimoire'
 
-    name = fields.Char(related = 'grimoire_type.name')
+    name = fields.Char()
 
     image = fields.Image(related = 'grimoire_type.image')
     
@@ -126,7 +125,8 @@ class grimoire(models.Model):
 class grimoire_type(models.Model):
     _name = 'white_clover.grimoire_type'
     
-    name = fields.Char()
+    #name = fields.Selection([('1','Red Grimoire'),('2','Blue Grimoire'),('3','Green Grimoire'),('4','White Grimoire')],required =True)
+    name = fields.Char(required=True)
     image = fields.Image(max_width = 200, max_height = 200)
     grimoires = fields.One2many('white_clover.grimoire', 'grimoire_type')
 

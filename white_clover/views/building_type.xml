@@ -75,7 +75,7 @@
                                         </li>
 
                                         <li attrs="{'invisible': [('evolver_production', '=', 0)]}">
-                                            <li>evolver Production:
+                                            <li>Evolver Production:
                                             <field name="evolver_production"/>
                                             </li>
                                         </li>

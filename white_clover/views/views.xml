@@ -24,7 +24,7 @@
     <record model="ir.actions.act_window" id="white_clover.action_player_window">
       <field name="name">white_clover player</field>
       <field name="res_model">white_clover.player</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
      <record model="ir.actions.act_window" id="white_clover.action_npc_village_window">
@@ -36,19 +36,19 @@
      <record model="ir.actions.act_window" id="white_clover.action_grimoire_window">
       <field name="name">white_clover grimoire</field>
       <field name="res_model">white_clover.grimoire</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <record model="ir.actions.act_window" id="white_clover.action_grimoire_type_window">
       <field name="name">white_clover grimoire type</field>
       <field name="res_model">white_clover.grimoire_type</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <record model="ir.actions.act_window" id="white_clover.action_building_window">
       <field name="name">white_clover building</field>
       <field name="res_model">white_clover.building</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <record model="ir.actions.act_window" id="white_clover.action_building_type_window">
