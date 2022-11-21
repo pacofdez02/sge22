@@ -1813,10 +1813,10 @@ nhmhVrDk/oqgIL3Eoz+7hoy9YNjb1bWHL9656VMMHdIfky65rO3JJx4vX7Fu99c+lTt14qgCxtXp
 mUymIKTR7YV64r0/vn/klP1L9+sEHaSXmLNwiVw78qGtdl3yosYmiyVSNW5EW/+c62tHvukz72zZ
 0wjghe7+7j1Z0EF6kZ/PnqXu3rv7jJSf6cM8tZ5z/sX6LZ+d0tc4BwKBQCAQCAQCgUAgEAgEAr3f
 PwCZydjoV7MYCQAAAABJRU5ErkJggg==</field>
-            <field name="hp">0</field>
-            <field name="attack">0</field>
-            <field name="defense">0</field>
-            <field name="speed">0</field>
+            <field name="hp">5</field>
+            <field name="attack">5</field>
+            <field name="defense">5</field>
+            <field name="speed">5</field>
           </record>
 
           <record id="white_clover.blue_grimoire" model="white_clover.grimoire_type">
@@ -2757,10 +2757,10 @@ AfTOfdmFL+k1m8Eb/dAtLi035/1e/4o7btyqhR1/5MtX37zwdHzP4QAZ8ozh3jtulpd/9atXVUdK
 rw+U+u0P/b+f+fzvve1tJYpG79P/cPHT0lI8LDUZ8oxh47rj9Oho/d5uv31Wday4CPDpr3zlaT0e
 Hmp/hjxjGF27Vh+zeuqviiO1s371jRfderQ/z5AhQ4YMGTJkyJAhQ4YMGTJkyJAhQ4YMGTJkyJAh
 Q4YMGTJkyJAhQ4YMGTJkyJAhQ55O/j+U1v3tmv20GgAAAABJRU5ErkJggg==</field>
-            <field name="hp">0</field>
-            <field name="attack">0</field>
-            <field name="defense">0</field>
-            <field name="speed">0</field>
+            <field name="hp">5</field>
+            <field name="attack">5</field>
+            <field name="defense">5</field>
+            <field name="speed">5</field>
           </record>
 
           <record id="white_clover.green_grimoire" model="white_clover.grimoire_type">
@@ -3782,10 +3782,10 @@ Urjo8st+Oz4+dtF3brjpfb/MqgTkfWDP1rVqKjUZ8hwvqKppLPcuPvbv2lBvXf+8LAROxHa82X4Q
 HFEu5pdNJkeOGR0daSpkc4pRLhMEMoGiW6P7si/8zy994dPLlh87fKA/9z9DJSAVf2Fo66tCOpWM
 jI2NdmdSY62FQlbLZ8qljp45e1ec8tFdTR3tH8gTrYqKioqKioqKioqKioqKioqKioqKioqKioqK
 ioqKioqKioqKioqKiop33f8FW29tS6eyiWwAAAAASUVORK5CYII=</field>
-            <field name="hp">0</field>
-            <field name="attack">0</field>
-            <field name="defense">0</field>
-            <field name="speed">0</field>
+            <field name="hp">5</field>
+            <field name="attack">5</field>
+            <field name="defense">5</field>
+            <field name="speed">5</field>
           </record>
 
           <record id="white_clover.white_grimoire" model="white_clover.grimoire_type">
@@ -4995,10 +4995,10 @@ ZqiKKAZhWBocGip1Wq2C7ThmFEcFmWWDUZxUDcMwFKEU4iReLxRlFVKoqqYp5VIZ0zQbfX3V/6LI
 NnRtenZBHxwY8N/9vn/zgg7tI4/crwRBLKIoEqZpiDhONF1XHTTdMhTd1HVd0TS9VSjYtdNPP/tl
 n7lXtKIVrWhFK1rRila0ohWtaEUrWtGKVrSiFa1oRSta0YpWtKIVrWhFK1rRila0ohWt6JWk/w+D
 wYQL2yCMsgAAAABJRU5ErkJggg==</field>
-            <field name="hp">0</field>
-            <field name="attack">0</field>
-            <field name="defense">0</field>
-            <field name="speed">0</field>
+            <field name="hp">5</field>
+            <field name="attack">5</field>
+            <field name="defense">5</field>
+            <field name="speed">5</field>
           </record>
 
 

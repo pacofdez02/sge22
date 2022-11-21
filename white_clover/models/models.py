@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
-
+import random
 
 
 
@@ -98,11 +98,21 @@ class grimoire(models.Model):
     npc_village = fields.Many2one('white_clover.npc_village') 
     
     
+
     hp = fields.Integer(related = 'grimoire_type.hp')
     attack = fields.Integer(related = 'grimoire_type.attack')
     defense = fields.Integer(related = 'grimoire_type.defense')
     speed = fields.Integer(related = 'grimoire_type.speed')
-    
+
+    @api.onchange('grimoire_type')
+    def _onchange_stats(self):
+        #if(self.grimoire_type.name == "")
+        self.hp = random.betavariate(5,1.3)*10
+        self.attack = random.betavariate(1.5,1.5)*10
+        self.defense = random.betavariate(1.5,1.5)*10
+        self.speed = random.betavariate(1.5,1.5)*10
+        
+
     #check_xp = fields.Integer()
     #check_lvl = fields.Integer(compute="check_level")
     
