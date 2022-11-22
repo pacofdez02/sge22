@@ -84,33 +84,57 @@ class grimoire(models.Model):
     _name = 'white_clover.grimoire'
     _description = 'Grimoire'
 
-    name = fields.Char()
+    name = fields.Char(required = True)
 
     image = fields.Image(related = 'grimoire_type.image')
     
-    level = fields.Integer()
+    level = fields.Integer(readonly = True)
     #level = fields.Integer(compute = "get_lvl")
     xp = fields.Float()
     
-    grimoire_type = fields.Many2one('white_clover.grimoire_type')
+    def getGrimoireType(self):
+        grimoiresList = self.env["white_clover.grimoire_type"].search([]).ids
+        return random.choice(grimoiresList)
+
+
+    grimoire_type = fields.Many2one('white_clover.grimoire_type', default = getGrimoireType,readonly = True)
 
     player = fields.Many2one('white_clover.player')
     npc_village = fields.Many2one('white_clover.npc_village') 
     
-    
-
+    grimoire_type_name = fields.Char(related = 'grimoire_type.name')
     hp = fields.Integer(related = 'grimoire_type.hp')
     attack = fields.Integer(related = 'grimoire_type.attack')
     defense = fields.Integer(related = 'grimoire_type.defense')
     speed = fields.Integer(related = 'grimoire_type.speed')
 
+    
+
     @api.onchange('grimoire_type')
     def _onchange_stats(self):
-        #if(self.grimoire_type.name == "")
-        self.hp = random.betavariate(5,1.3)*10
-        self.attack = random.betavariate(1.5,1.5)*10
-        self.defense = random.betavariate(1.5,1.5)*10
-        self.speed = random.betavariate(1.5,1.5)*10
+        if self.grimoire_type_name == "White grimoire":
+            self.hp = random.betavariate(5,1.3)*10
+            self.attack = random.betavariate(1.5,1.5)*10
+            self.defense = random.betavariate(1.5,1.5)*10
+            self.speed = random.betavariate(1.5,1.5)*10
+
+        if self.grimoire_type_name == "Red grimoire":
+            self.attack = random.betavariate(5,1.3)*10
+            self.hp = random.betavariate(1.5,1.5)*10
+            self.defense = random.betavariate(1.5,1.5)*10
+            self.speed = random.betavariate(1.5,1.5)*10
+
+        if self.grimoire_type_name == "Blue grimoire":
+            self.defense = random.betavariate(5,1.3)*10
+            self.attack = random.betavariate(1.5,1.5)*10
+            self.hp = random.betavariate(1.5,1.5)*10
+            self.speed = random.betavariate(1.5,1.5)*10
+
+        if self.grimoire_type_name == "Green grimoire":
+            self.speed = random.betavariate(5,1.3)*10
+            self.attack = random.betavariate(1.5,1.5)*10
+            self.defense = random.betavariate(1.5,1.5)*10
+            self.hp = random.betavariate(1.5,1.5)*10
         
 
     #check_xp = fields.Integer()
