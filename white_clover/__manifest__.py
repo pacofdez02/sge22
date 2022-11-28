@@ -32,6 +32,7 @@
         'views/grimoire_type.xml',
         'views/views.xml',
         'views/templates.xml',
+        'views/cron.xml',
         'demo/data.xml'
     ],
     # only loaded in demonstration mode

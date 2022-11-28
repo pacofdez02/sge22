@@ -26,7 +26,7 @@
           <group>
           <group>
               <field name="name"/>
-              <field name="level"/>
+              <field name="level" widget="progressbar"/>
               <field name ="image"  widget ="image"/>
 
             </group>
@@ -56,7 +56,7 @@
     <field name = "id"/>
     <field name = "name"/>
     <field name ="image"  widget ="image"/>
-    <field name="level"/>
+    <field name = "level"/>
     <field name = "grimoire_type"/>
     <field name = "player"/>
     <field name = "npc_village"/>

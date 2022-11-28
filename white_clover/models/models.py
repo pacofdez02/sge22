@@ -11,13 +11,15 @@ class player(models.Model):
     image = fields.Image(max_width = 200, max_height = 200)
     name = fields.Char(string = "Name", required = True)
     password = fields.Char()
-    reputation = fields.Char()
+    reputation = fields.Char(readonly = True)
 
-    name_village = fields.Char(related = 'buildings.name')
-    image_village = fields.Image(max_width = 200, max_height = 200)
+    mana = fields.Float(readonly=True)
+    gold = fields.Float(readonly=True)
+    evolver = fields.Float(readonly = True)
 
+    
 
-    buildings = fields.One2many('white_clover.building', 'player_village')
+    buildings = fields.One2many('white_clover.building', 'player')
 
     grimoires = fields.One2many('white_clover.grimoire', 'player')
     grimoires_qty = fields.Integer(compute="get_grimoires_qty")
@@ -34,7 +36,10 @@ class npc_village(models.Model):
 
     name = fields.Char(required = True)
     image = fields.Image(max_width = 200, max_height = 200)
-    size = fields.Float()
+
+    mana = fields.Float(readonly=True)
+    gold = fields.Float(readonly=True)
+    evolver = fields.Float(readonly = True)
 
     grimoires = fields.One2many('white_clover.grimoire', 'npc_village')
     buildings = fields.One2many('white_clover.building', 'npc_village')
@@ -44,14 +49,11 @@ class building(models.Model):
     _name = 'white_clover.building'
     _description = 'Building'
 
-    #name = fields.Selection([('1','mana_production'),('2','gold_production'),('3','evolver_production')])
     name = fields.Char(related = 'building_type.name')
     image = fields.Image(related = 'building_type.image')
 
-    player_village = fields.Many2one('white_clover.player',ondelete="cascade")
+    player = fields.Many2one('white_clover.player',ondelete="cascade")
     npc_village = fields.Many2one('white_clover.npc_village', ondelete="cascade")
-
-    #type = fields.Selection([('1','magic_institute'),('2','creation_institute'),('3','evolver_institute')])
 
     building_type = fields.Many2one('white_clover.building_type')
 
@@ -59,10 +61,28 @@ class building(models.Model):
     gold_production = fields.Float(related = 'building_type.gold_production')
     evolver_production = fields.Float(related = 'building_type.evolver_production')
     
+    @api.model
+    def produce(self):
+       for b in self.search([]):
+            if(b.player):
+                player = b.player
+                mana = player.mana + b.mana_production*10
+                gold = player.gold + b.gold_production*10
+                evolver = player.evolver + b.evolver_production*10
+                player.write({
+                    "mana":mana,
+                    "gold":gold,
+                    "evolver":evolver})
 
-    #def produce(self):
-     #   for b in self:
-      #      print("Produce",b.food_production)
+            if(b.npc_village):
+                npc_village = b.npc_village
+                mana = npc_village.mana + b.mana_production*20
+                gold = npc_village.gold + b.gold_production*20
+                evolver = npc_village.evolver + b.evolver_production*20
+                npc_village.write({
+                    "mana":mana,
+                    "gold":gold,
+                    "evolver":evolver})
 
 
 class building_type(models.Model):
@@ -86,7 +106,7 @@ class grimoire(models.Model):
 
     name = fields.Char(required = True)
 
-    image = fields.Image(related = 'grimoire_type.image')
+    image = fields.Image()
     
     level = fields.Integer(readonly = True)
     #level = fields.Integer(compute = "get_lvl")
@@ -101,41 +121,51 @@ class grimoire(models.Model):
 
     player = fields.Many2one('white_clover.player')
     npc_village = fields.Many2one('white_clover.npc_village') 
-    
-    grimoire_type_name = fields.Char(related = 'grimoire_type.name')
-    hp = fields.Integer(related = 'grimoire_type.hp')
-    attack = fields.Integer(related = 'grimoire_type.attack')
-    defense = fields.Integer(related = 'grimoire_type.defense')
-    speed = fields.Integer(related = 'grimoire_type.speed')
+
+    hp = fields.Integer()
+    attack = fields.Integer()
+    defense = fields.Integer()
+    speed = fields.Integer()
 
     
 
     @api.onchange('grimoire_type')
     def _onchange_stats(self):
-        if self.grimoire_type_name == "White grimoire":
-            self.hp = random.betavariate(5,1.3)*10
-            self.attack = random.betavariate(1.5,1.5)*10
-            self.defense = random.betavariate(1.5,1.5)*10
-            self.speed = random.betavariate(1.5,1.5)*10
+        if self.grimoire_type.name == "White grimoire":
+            image = self.grimoire_type.image
+            hp = random.betavariate(5,1.3)*10
+            attack = random.betavariate(1.5,1.5)*10
+            defense = random.betavariate(1.5,1.5)*10
+            speed = random.betavariate(1.5,1.5)*10
 
-        if self.grimoire_type_name == "Red grimoire":
-            self.attack = random.betavariate(5,1.3)*10
-            self.hp = random.betavariate(1.5,1.5)*10
-            self.defense = random.betavariate(1.5,1.5)*10
-            self.speed = random.betavariate(1.5,1.5)*10
+        if self.grimoire_type.name == "Red grimoire":
+            image = self.grimoire_type.image
+            attack = random.betavariate(5,1.3)*10
+            hp = random.betavariate(1.5,1.5)*10
+            defense = random.betavariate(1.5,1.5)*10
+            speed = random.betavariate(1.5,1.5)*10
 
-        if self.grimoire_type_name == "Blue grimoire":
-            self.defense = random.betavariate(5,1.3)*10
-            self.attack = random.betavariate(1.5,1.5)*10
-            self.hp = random.betavariate(1.5,1.5)*10
-            self.speed = random.betavariate(1.5,1.5)*10
+        if self.grimoire_type.name == "Blue grimoire":
+            image = self.grimoire_type.image
+            defense = random.betavariate(5,1.3)*10
+            attack = random.betavariate(1.5,1.5)*10
+            hp = random.betavariate(1.5,1.5)*10
+            speed = random.betavariate(1.5,1.5)*10
 
-        if self.grimoire_type_name == "Green grimoire":
-            self.speed = random.betavariate(5,1.3)*10
-            self.attack = random.betavariate(1.5,1.5)*10
-            self.defense = random.betavariate(1.5,1.5)*10
-            self.hp = random.betavariate(1.5,1.5)*10
+        if self.grimoire_type.name == "Green grimoire":
+            image = self.grimoire_type.image
+            speed = random.betavariate(5,1.3)*10
+            attack = random.betavariate(1.5,1.5)*10
+            defense = random.betavariate(1.5,1.5)*10
+            hp = random.betavariate(1.5,1.5)*10
         
+        self.write({
+                    "image":image,
+                    "hp":hp,
+                    "attack":attack,
+                    "defense":defense,
+                    "speed": speed})
+
 
     #check_xp = fields.Integer()
     #check_lvl = fields.Integer(compute="check_level")

@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
   <tree>
     <field name = "name"/>
-    <field name="player_village"/>
+    <field name="player"/>
     <field name="npc_village"/>
     <field name = "gold_production"/>
     <field name = "mana_production"/>
@@ -50,7 +50,7 @@
   <kanban>
     <field name = "id"/>
     <field name="name"/>
-    <field name="player_village"/>
+    <field name="player"/>
     <field name="npc_village"/>
     
     <templates>
@@ -67,7 +67,7 @@
                                             <field name="name"/>
                                         </h4>
                                         <p>
-                                          <field name="player_village"/>
+                                          <field name="player"/>
                                           <field name="npc_village"/>
                                         </p>
 
