@@ -117,7 +117,8 @@ class grimoire(models.Model):
         return random.choice(grimoiresList)
 
 
-    grimoire_type = fields.Many2one('white_clover.grimoire_type', default = getGrimoireType,readonly = True)
+    grimoire_type = fields.Many2one('white_clover.grimoire_type', default = getGrimoireType)
+    grimoire_type_write = fields.Many2one('white_clover.grimoire_type')
 
     player = fields.Many2one('white_clover.player')
     npc_village = fields.Many2one('white_clover.npc_village') 
@@ -160,6 +161,7 @@ class grimoire(models.Model):
             hp = random.betavariate(1.5,1.5)*10
         
         self.write({
+                    "grimoire_type_write":self.grimoire_type.id,
                     "image":image,
                     "hp":hp,
                     "attack":attack,
@@ -198,3 +200,4 @@ class grimoire_type(models.Model):
     attack = fields.Integer()
     defense = fields.Integer()
     speed = fields.Integer()
+

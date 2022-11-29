@@ -33,6 +33,7 @@
 
             <group>
                 <field name="grimoire_type"/>
+                <field name ="grimoire_type_write" invisible = "True"/>
                 <field name="hp"/>
                 <field name="attack"/>
                 <field name="defense"/>
