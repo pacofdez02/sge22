@@ -21,6 +21,8 @@ class player(models.Model):
 
     buildings = fields.One2many('white_clover.building', 'player')
     available_buildings = fields.Many2many('white_clover.building_type', compute="get_available_buildings")
+    buildings_qty = fields.Integer(compute="get_buildings_qty")
+
     
     grimoires = fields.One2many('white_clover.grimoire', 'player')
     grimoires_qty = fields.Integer(compute="get_grimoires_qty")
@@ -29,6 +31,11 @@ class player(models.Model):
     def get_grimoires_qty(self):
         for p in self:
             p.grimoires_qty = len(p.grimoires)
+            
+    @api.depends('buildings')
+    def get_buildings_qty(self):
+        for p in self:
+            p.buildings_qty = len(p.buildings)
 
 
     @api.depends('gold')
@@ -36,6 +43,26 @@ class player(models.Model):
         for c in self:
             c.available_buildings = self.env['white_clover.building_type'].search([('gold_build_cost', '<=', c.gold)])
 
+
+
+
+    @api.constrains('gold')
+    def _check_something(self):
+        for record in self:
+            if record.gold > 10000:
+                raise ValidationError("You have too much gold %s" % record.gold)
+            
+    @api.constrains('mana')
+    def _check_something(self):
+        for record in self:
+            if record.mana > 10000:
+                raise ValidationError("You have too much mana %s" % record.mana)
+            
+    @api.constrains('evolver')
+    def _check_something(self):
+        for record in self:
+            if record.evolver > 10000:
+                raise ValidationError("You have too much evolver %s" % record.evolver)
 
 
 class npc_village(models.Model):
@@ -59,6 +86,7 @@ class building(models.Model):
 
     name = fields.Char(related = 'building_type.name')
     image = fields.Image(related = 'building_type.image')
+    level = fields.Integer(default = 1)
 
     player = fields.Many2one('white_clover.player',ondelete="cascade")
     npc_village = fields.Many2one('white_clover.npc_village', ondelete="cascade")
@@ -74,24 +102,34 @@ class building(models.Model):
     mana_build_cost = fields.Float(related = 'building_type.mana_build_cost')
     evolver_build_cost = fields.Float(related = 'building_type.evolver_build_cost')
     
+    @api.constrains('level')
+    def check_level(self):
+        for record in self:
+            if record.level > 10:
+                raise ValidationError("Level can't be more than 10 %s" % record.level)
+            
+            
+    #orm cron function 
     @api.model
     def produce(self):
        for b in self.search([]):
             if(b.player):
+                level = b.level
                 player = b.player
-                mana = player.mana + b.mana_production*10
-                gold = player.gold + b.gold_production*10
-                evolver = player.evolver + b.evolver_production*10
+                mana = player.mana + b.mana_production*level
+                gold = player.gold + b.gold_production*level
+                evolver = player.evolver + b.evolver_production*level
                 player.write({
                     "mana":mana,
                     "gold":gold,
                     "evolver":evolver})
 
             if(b.npc_village):
+                level = b.level
                 npc_village = b.npc_village
-                mana = npc_village.mana + b.mana_production*20
-                gold = npc_village.gold + b.gold_production*20
-                evolver = npc_village.evolver + b.evolver_production*20
+                mana = npc_village.mana + b.mana_production*level
+                gold = npc_village.gold + b.gold_production*level
+                evolver = npc_village.evolver + b.evolver_production*level
                 npc_village.write({
                     "mana":mana,
                     "gold":gold,
@@ -190,10 +228,7 @@ class grimoire(models.Model):
             defense = random.betavariate(1.5,1.5)*10
             hp = random.betavariate(1.5,1.5)*10
         
-        if self.hp == 0:
-            hp += 1
-        if self.attack == 0:
-            attack += 1
+       
        
             
         self.write({

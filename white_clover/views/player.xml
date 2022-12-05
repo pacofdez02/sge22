@@ -1,4 +1,24 @@
 <odoo>
+
+  
+    <data>
+     <record model="ir.ui.view" id="white_clover.player_tree">
+     <field name="name">white_clover player</field>
+     <field name="model">white_clover.player</field>
+     <field name="arch" type="xml">
+     <tree>
+       <field name="name"/>
+       <field name="reputation"/>
+       <field name="grimoires_qty"/>
+     </tree>
+     </field>
+     </record>
+     </data>
+
+
+
+
+  
     <data>
     <record model="ir.ui.view" id="white_clover.player_form">
   <field name="name">white_clover player</field>
