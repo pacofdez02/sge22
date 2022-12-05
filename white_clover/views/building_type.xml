@@ -30,6 +30,12 @@
                  <field name="gold_production"/>
                  <field name="evolver_production"/>
             </group>
+            <group string = "Costs">
+              <field name="mana_build_cost"/>
+              <field name="gold_build_cost"/>
+              <field name="evolver_build_cost"/>
+          </group>
+
           </group>
       </sheet>
   </form>

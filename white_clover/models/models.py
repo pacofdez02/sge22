@@ -14,13 +14,14 @@ class player(models.Model):
     reputation = fields.Char(readonly = True)
 
     mana = fields.Float(readonly=True)
-    gold = fields.Float(readonly=True)
+    gold = fields.Float(default = 100)
     evolver = fields.Float(readonly = True)
 
     
 
     buildings = fields.One2many('white_clover.building', 'player')
-
+    available_buildings = fields.Many2many('white_clover.building_type', compute="get_available_buildings")
+    
     grimoires = fields.One2many('white_clover.grimoire', 'player')
     grimoires_qty = fields.Integer(compute="get_grimoires_qty")
 
@@ -28,6 +29,13 @@ class player(models.Model):
     def get_grimoires_qty(self):
         for p in self:
             p.grimoires_qty = len(p.grimoires)
+
+
+    @api.depends('gold')
+    def get_available_buildings(self):
+        for c in self:
+            c.available_buildings = self.env['white_clover.building_type'].search([('gold_build_cost', '<=', c.gold)])
+
 
 
 class npc_village(models.Model):
@@ -56,10 +64,15 @@ class building(models.Model):
     npc_village = fields.Many2one('white_clover.npc_village', ondelete="cascade")
 
     building_type = fields.Many2one('white_clover.building_type')
+    
 
     mana_production = fields.Float(related = 'building_type.mana_production')
     gold_production = fields.Float(related = 'building_type.gold_production')
     evolver_production = fields.Float(related = 'building_type.evolver_production')
+    
+    gold_build_cost = fields.Float(related = 'building_type.gold_build_cost')
+    mana_build_cost = fields.Float(related = 'building_type.mana_build_cost')
+    evolver_build_cost = fields.Float(related = 'building_type.evolver_build_cost')
     
     @api.model
     def produce(self):
@@ -84,6 +97,9 @@ class building(models.Model):
                     "gold":gold,
                     "evolver":evolver})
 
+   
+
+
 
 class building_type(models.Model):
     _name = 'white_clover.building_type'
@@ -96,9 +112,23 @@ class building_type(models.Model):
     gold_production = fields.Float()
     evolver_production = fields.Float()
 
+    gold_build_cost = fields.Float(default = 100)
+    mana_build_cost = fields.Float(default = 250)
+    evolver_build_cost = fields.Float(default = 500)
 
-
-
+    def create_building(self):
+        for b in self:
+            player = self.env['white_clover.player'].browse(self.env.context['ctx_player'])[0]
+            if player.gold >= b.gold_build_cost:
+                self.env['white_clover.building'].create({
+                    "player": player.id,
+                    "building_type": b.id
+                })
+                player.gold -= b.gold_build_cost
+            
+    
+            
+            
 
 class grimoire(models.Model):
     _name = 'white_clover.grimoire'
@@ -123,10 +153,10 @@ class grimoire(models.Model):
     player = fields.Many2one('white_clover.player')
     npc_village = fields.Many2one('white_clover.npc_village') 
 
-    hp = fields.Integer()
-    attack = fields.Integer()
-    defense = fields.Integer()
-    speed = fields.Integer()
+    hp = fields.Integer(readonly = True)
+    attack = fields.Integer(readonly = True)
+    defense = fields.Integer(readonly = True)
+    speed = fields.Integer(readonly = True)
 
     
 
@@ -160,6 +190,12 @@ class grimoire(models.Model):
             defense = random.betavariate(1.5,1.5)*10
             hp = random.betavariate(1.5,1.5)*10
         
+        if self.hp == 0:
+            hp += 1
+        if self.attack == 0:
+            attack += 1
+       
+            
         self.write({
                     "grimoire_type_write":self.grimoire_type.id,
                     "image":image,
